@@ -1,0 +1,111 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with delivery addresses in Bharuch and preferences",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "pincode": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "admin", "store_manager"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["userId", "displayName"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "Supermarket grocery product item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "categoryLabel": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "unit": { "type": "string" },
+        "rating": { "type": "number" },
+        "reviewsCount": { "type": "number" },
+        "origin": { "type": "string" },
+        "image": { "type": "string" },
+        "badge": { "type": "string" },
+        "description": { "type": "string" },
+        "organic": { "type": "boolean" },
+        "inStock": { "type": "boolean" },
+        "stockCount": { "type": "number" }
+      },
+      "required": ["id", "name", "price", "unit"]
+    },
+    "Order": {
+      "title": "Order",
+      "description": "Customer grocery delivery order in Bharuch",
+      "type": "object",
+      "properties": {
+        "orderId": { "type": "string" },
+        "userId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "deliveryAddress": { "type": "string" },
+        "city": { "type": "string" },
+        "pincode": { "type": "string" },
+        "notes": { "type": "string" },
+        "items": { "type": "array" },
+        "subtotal": { "type": "number" },
+        "deliveryFee": { "type": "number" },
+        "tax": { "type": "number" },
+        "tip": { "type": "number" },
+        "discount": { "type": "number" },
+        "total": { "type": "number" },
+        "paymentMethod": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["placed", "shopping", "chilled_packing", "out_for_delivery", "delivered", "cancelled"]
+        },
+        "timeSlot": { "type": "string" },
+        "storeHub": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["orderId", "customerName", "deliveryAddress", "total", "status"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer feedback and ratings for groceries",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "author": { "type": "string" },
+        "location": { "type": "string" },
+        "rating": { "type": "number" },
+        "date": { "type": "string" },
+        "text": { "type": "string" },
+        "favoriteItem": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "author", "rating", "text"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Stores user profiles and delivery preferences"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Catalog of available supermarket items"
+    },
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Store customer orders and live tracking status"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Verified customer feedback and store ratings"
+    }
+  }
+}

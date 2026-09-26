@@ -1,0 +1,8 @@
+{
+  "name": "Falcon Foods Supermarket Bharuch",
+  "description": "Bharuch's premier online grocery and fresh market. Farm-fresh Narmada basin vegetables, A2 dairy, cold-pressed oils, Bharuch specialties, and 2-hour delivery across Bharuch (392001, 392002, 392012).",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
